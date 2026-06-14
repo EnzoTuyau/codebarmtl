@@ -13,6 +13,8 @@
 </head>
 
 <body class="is-preload">
+
+	<body class="lang-fr"></body>
 	<div id="page-wrapper">
 
 		<!-- Header -->
@@ -20,11 +22,17 @@
 			<h1><a href="index.html">CodeBar MTL</a></h1>
 			<nav id="nav">
 				<ul>
+					<li id="lang-toggle-item">
+						<a href="#" id="lang-toggle" onclick="toggleLang(event)">EN</a>
+					</li>
 					<li class="special">
 						<a href="#menu" class="menuToggle"><span>Menu</span></a>
 						<div id="menu">
 							<ul>
-								<li><a href="index.html">Accueil</a></li>
+								<li>
+									<span class="fr"><a href="index.html">Accueil</a></span>
+									<span class="en"><a href="index.html">Home</a></span>
+								</li>
 								<li><a href="degustation.html">Dégustation</a></li>
 								<li><a href="evenements.html">Événements privés</a></li>
 								<li><a href="index.html#contact">Contact</a></li>
@@ -55,6 +63,14 @@
 
 					<style>
 						@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap');
+
+						.lang-fr .en {
+							display: none;
+						}
+
+						.lang-en .fr {
+							display: none;
+						}
 
 						.cb-label {
 							color: #C9A84C;
@@ -204,6 +220,28 @@
 							line-height: 1.5;
 							letter-spacing: 0.03em;
 						}
+
+						#lang-toggle-item {
+							display: flex;
+							align-items: center;
+						}
+
+						#lang-toggle {
+							color: #C9A84C;
+							border: 1px solid #C9A84C;
+							padding: 0.3rem 0.7rem;
+							font-size: 0.75rem;
+							letter-spacing: 0.12em;
+							font-weight: 600;
+							border-radius: 3px;
+							text-decoration: none;
+							transition: background 0.2s ease, color 0.2s ease;
+						}
+
+						#lang-toggle:hover {
+							background: #C9A84C;
+							color: #0A0A0A;
+						}
 					</style>
 
 					<div class="cb-wrap">
@@ -211,6 +249,12 @@
 					</div>
 
 					<script>
+						function toggleLang(e) {
+							e.preventDefault();
+							const isNowEn = document.body.classList.toggle('lang-en');
+							document.body.classList.toggle('lang-fr', !isNowEn);
+							document.getElementById('lang-toggle').textContent = isNowEn ? 'FR' : 'EN';
+						}
 						const cocktails = [
 							{ name: "Negroni Fumé", ingredients: "Gin · Campari · Vermouth doux · Zeste orange", emoji: "🍊" },
 							{ name: "Velours Noir", ingredients: "Rhum vieux · Crème de cacao · Espresso · Vanille", emoji: "☕" },
